@@ -469,11 +469,11 @@ async function gcalDelete(eventId) {
 
 // ── MONTH BOUNDS ─────────────────────────────────────────────────────────────
 function monthBounds(y, m) {
-  const pad = n => String(n).padStart(2, '0');
-  const last = new Date(y, m + 1, 0).getDate();
+  const start = new Date(y, m, 1, 0, 0, 0);
+  const end   = new Date(y, m + 1, 0, 23, 59, 59);
   return {
-    min: `${y}-${pad(m + 1)}-01T00:00:00`,
-    max: `${y}-${pad(m + 1)}-${pad(last)}T23:59:59`
+    min: start.toISOString(),
+    max: end.toISOString()
   };
 }
 
